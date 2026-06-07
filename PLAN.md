@@ -2,16 +2,16 @@
 
 ## Current State
 
-- Directory: `/home/xyf/SeaBlockUpdates/repos/QualityFullMonty`
-- The directory is empty and is not currently a git repository.
-- Local Factorio headless install is available at `/home/xyf/SeaBlockUpdates/factorio_headless`.
-- Local user data and mods directory are available at `/home/xyf/SeaBlockUpdates/factorio_user`.
+- Directory: this repository root.
+- The repository is initialized and published under `HourGlss/QualityFullMonty`.
+- Local Factorio headless installs can be provided with `FACTORIO_ROOT` or `FACTORIO_BIN`.
+- Local user data and mods directories should stay outside the published mod folder.
 
 ## Product Goal
 
 Factorio 2.0 mod for standard Factorio 2.0 games using the official Quality feature:
 
-- Any placed entity with a module inventory that can accept quality modules is automatically filled with legendary `quality-module-3`.
+- Any placed entity with a module inventory that can accept quality modules is automatically filled with the hidden Full Monty quality module at legendary quality.
 - Players should not be able to keep/remove those modules through manual removal, robots, upgrade or downgrade planners, or inserter-style interactions.
 - Beacons should be removed from practical gameplay and cleaned from existing saves.
 - The mod should be packageable and publishable on the Factorio Mod Portal so it is discoverable in the in-game mod browser.
@@ -46,11 +46,11 @@ Use:
 
 - Internal name: `QualityFullMonty`
 - Display title: `Quality Full Monty`
-- Initial version: `1.0.0`
+- Current version: `0.1.3`
 - Factorio version: `2.0`
 - Dependencies: `base`, `quality`
 - Feature flag: `quality_required = true`
-- Publisher: Fyx
+- Publisher: HourGlss
 
 Compatibility target:
 
@@ -75,15 +75,15 @@ Runtime should clean saves and edge cases:
 - On init/configuration change, scan all surfaces and destroy existing beacon entities.
 - On build/revive/script-build events, immediately destroy any beacon entity that appears.
 
-### Legendary Quality Module Enforcement
+### Full Monty Module Enforcement
 
 Use real module inventories first, then prove whether the lock is strong enough.
 
 The runtime primitive is:
 
 - `entity.get_module_inventory()` to detect module-capable entities.
-- Try inserting or setting `{ name = "quality-module-3", quality = "legendary", count = 1 }`.
-- If the module inventory accepts that stack, replace every slot with legendary quality modules.
+- Try inserting or setting `{ name = "qfm-locked-quality-module-3", quality = "legendary", count = 1 }`.
+- If the module inventory accepts that stack, replace every slot with the hidden Full Monty quality module.
 
 The enforcement loop should be:
 

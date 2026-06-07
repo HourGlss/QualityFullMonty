@@ -8,7 +8,7 @@ It automatically fills every quality-capable module inventory with locked legend
 
 - Supports standard Factorio 2.0 plus the official `quality` mod.
 - Does not target SeaBlock, Angel's Mods, Bob's Mods, or overhaul compatibility.
-- Local tests live outside the mod folder and are intentionally ignored by git.
+- Tests live outside the mod folder so they are not packaged into the published Factorio mod.
 
 ## Packaging
 
@@ -22,13 +22,15 @@ The release zip is written to `dist/QualityFullMonty_0.1.3.zip`.
 
 ## Local Validation
 
-The local validation harness is intentionally ignored by git. It checks every mod Lua file for syntax, cyclomatic complexity, and maintainability, then loads the mod in Factorio headless with a local-only companion test mod.
+The local validation harness checks every mod Lua file for syntax, cyclomatic complexity, and maintainability, then loads the mod in Factorio headless with a local-only companion test mod.
 
 The current quality gate requires:
 
 - max cyclomatic complexity of 5 or lower per Lua function;
 - maintainability score of 80 or higher per Lua file;
 - successful Factorio headless create, benchmark load, and data dump.
+
+By default the test harness looks for Factorio headless at `../../factorio_headless` relative to this repository. Override it with `FACTORIO_ROOT=/path/to/factorio` or `FACTORIO_BIN=/path/to/factorio`.
 
 ## Factorio Mod Portal
 
