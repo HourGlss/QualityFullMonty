@@ -137,7 +137,7 @@ Important risk:
 6. Package for local testing:
    - symlink or copy `QualityFullMonty` into `factorio_user/mods`;
    - enable `quality` and `QualityFullMonty` in `mod-list.json`;
-   - build zip as `QualityFullMonty_0.1.2.zip`.
+   - build zip as `QualityFullMonty_0.1.3.zip`.
 
 ## Test Plan
 
@@ -190,7 +190,7 @@ Use a local-only companion test mod or scenario, not included in the published z
    - Create an API key with `ModPortal: Publish Mods`.
 
 2. Prepare release artifacts:
-   - `QualityFullMonty_0.1.2.zip`
+   - `QualityFullMonty_0.1.3.zip`
    - `thumbnail.png`, ideally 144x144.
    - `changelog.txt` in Factorio changelog format.
    - Markdown long description for Mod Portal.

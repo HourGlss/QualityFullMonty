@@ -18,7 +18,7 @@ Run:
 scripts/package.sh
 ```
 
-The release zip is written to `dist/QualityFullMonty_0.1.2.zip`.
+The release zip is written to `dist/QualityFullMonty_0.1.3.zip`.
 
 ## Local Validation
 
@@ -34,6 +34,6 @@ The current quality gate requires:
 
 To make the mod findable in-game, publish the release zip to the official Factorio Mod Portal. The in-game Mods > Install tab searches that portal.
 
-First-time publishing needs a Factorio account API key from `https://factorio.com/profile` with `ModPortal: Publish Mods` permission. The first upload uses the Mod Publish API `init_publish` endpoint, then uploads `dist/QualityFullMonty_0.1.2.zip` to the returned upload URL.
+First-time publishing needs a Factorio account API key from `https://factorio.com/profile` with `ModPortal: Publish Mods` permission. The first upload uses the Mod Publish API `init_publish` endpoint, then uploads `dist/QualityFullMonty_0.1.3.zip` to the returned upload URL.
 
 Subsequent releases use the Mod Upload API release upload endpoint for the existing mod.

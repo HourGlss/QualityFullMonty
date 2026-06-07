@@ -34,6 +34,7 @@ function entities.fill_modules(entity)
   end
 
   state.remember_entity(entity)
+  entities.clear_item_request_proxy(entity)
   return true
 end
 
@@ -44,6 +45,34 @@ function entities.clear_modules(entity)
 
   module_inventory(entity).clear()
   return true
+end
+
+function entities.clear_item_request_proxy(entity)
+  if not entities.is_valid(entity) then
+    return false
+  end
+
+  local proxy = entity.item_request_proxy
+  if proxy and proxy.valid then
+    proxy.destroy()
+    return true
+  end
+
+  return false
+end
+
+function entities.clear_target_request_proxy(proxy)
+  if not entities.is_valid(proxy) or proxy.type ~= "item-request-proxy" then
+    return false
+  end
+
+  local target = proxy.proxy_target
+  if entities.should_manage(target) then
+    proxy.destroy()
+    return true
+  end
+
+  return false
 end
 
 function entities.remove_beacon(entity)
@@ -57,6 +86,10 @@ end
 
 function entities.handle_entity(entity)
   if not entities.is_valid(entity) then
+    return
+  end
+
+  if entities.clear_target_request_proxy(entity) then
     return
   end
 
