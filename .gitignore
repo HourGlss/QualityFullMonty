@@ -1,0 +1,4 @@
+.factorio-test/
+dist/
+local-tests/
+
