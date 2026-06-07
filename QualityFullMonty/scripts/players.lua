@@ -1,24 +1,15 @@
 local constants = require("scripts.constants")
 local entities = require("scripts.entities")
+local inventories = require("scripts.inventories")
 
 local players = {}
 
 local function scrub_stack(stack)
-  if stack and stack.valid_for_read and stack.name == constants.locked_module_name then
-    stack.clear()
-  end
+  inventories.remove_locked_stack(stack)
 end
 
 local function scrub_inventory(inventory)
-  if not inventory or not inventory.valid then
-    return
-  end
-
-  for _, stack in pairs(inventory.get_contents()) do
-    if stack.name == constants.locked_module_name then
-      inventory.remove(stack)
-    end
-  end
+  inventories.remove_locked_from(inventory)
 end
 
 function players.scrub_player(player)

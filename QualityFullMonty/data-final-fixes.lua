@@ -8,12 +8,24 @@ local function clone_locked_module()
 
   local locked = table.deepcopy(source)
   locked.name = locked_module_name
-  locked.localised_name = { "item-name.quality-module-3" }
-  locked.localised_description = { "item-description.quality-module" }
+  locked.localised_name = { "item-name.qfm-locked-quality-module-3" }
+  locked.localised_description = { "item-description.qfm-locked-quality-module-3" }
   locked.hidden = true
+  locked.auto_recycle = false
+  locked.effect = { quality = 0.25 }
   locked.order = "z[quality-full-monty]-a[locked-quality-module-3]"
 
   data:extend({ locked })
+end
+
+local function disable_locked_module_recycling()
+  local recipe = data.raw.recipe[locked_module_name .. "-recycling"]
+  if not recipe then
+    return
+  end
+
+  recipe.enabled = false
+  recipe.hidden = true
 end
 
 local function collect_beacon_names()
@@ -111,6 +123,7 @@ local function remove_beacon_unlocks(beacon_recipe_names)
 end
 
 clone_locked_module()
+disable_locked_module_recycling()
 
 local beacon_names = collect_beacon_names()
 local beacon_item_names = hide_beacon_items(beacon_names)

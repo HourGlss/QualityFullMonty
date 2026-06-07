@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.2
+Date: 2026-06-07
+  Features:
+    - The managed module is now a hidden Full Monty quality module with no speed penalty.
+  Bugfixes:
+    - Prevent the managed module from being recycled.
+    - Destroy managed modules found in storage inventories such as chests, cars, and cargo wagons.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 2026-06-07
   Bugfixes:

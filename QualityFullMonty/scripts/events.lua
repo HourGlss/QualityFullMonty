@@ -30,6 +30,7 @@ end
 
 local function on_reconcile_tick()
   reconcile.known_entities()
+  surfaces.scrub_storage_all()
   players.scrub_all()
 end
 

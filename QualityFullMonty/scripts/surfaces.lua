@@ -1,4 +1,5 @@
 local entities = require("scripts.entities")
+local inventories = require("scripts.inventories")
 local players = require("scripts.players")
 local prototypes_lib = require("scripts.prototypes")
 
@@ -21,9 +22,22 @@ local function fill_surface_modules(surface)
   end
 end
 
+local function scrub_surface_storage(surface)
+  for _, entity in pairs(surface.find_entities_filtered({ type = inventories.storage_entity_types() })) do
+    inventories.remove_from_entity_storage(entity)
+  end
+end
+
 function surfaces.scan_surface(surface)
   remove_surface_beacons(surface)
   fill_surface_modules(surface)
+  scrub_surface_storage(surface)
+end
+
+function surfaces.scrub_storage_all()
+  for _, surface in pairs(game.surfaces) do
+    scrub_surface_storage(surface)
+  end
 end
 
 function surfaces.scan_all()
@@ -35,4 +49,3 @@ function surfaces.scan_all()
 end
 
 return surfaces
-
