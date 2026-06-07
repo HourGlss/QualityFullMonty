@@ -37,6 +37,15 @@ function entities.fill_modules(entity)
   return true
 end
 
+function entities.clear_modules(entity)
+  if not entities.should_manage(entity) then
+    return false
+  end
+
+  module_inventory(entity).clear()
+  return true
+end
+
 function entities.remove_beacon(entity)
   if entities.is_valid(entity) and entity.type == "beacon" then
     entity.destroy({ raise_destroy = true })
@@ -59,4 +68,3 @@ function entities.handle_entity(entity)
 end
 
 return entities
-

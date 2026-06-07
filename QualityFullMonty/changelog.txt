@@ -1,8 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.1
+Date: 2026-06-07
+  Bugfixes:
+    - Clear managed module inventories before player or robot mining so locked modules are not returned to inventories.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.0
 Date: 2026-06-07
   Features:
     - Initial release.
     - Automatically fills quality-capable module inventories with locked legendary quality modules.
     - Removes beacons from standard Factorio 2.0 gameplay and cleans existing beacon entities.
-

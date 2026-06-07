@@ -16,6 +16,10 @@ local function on_mined_entity(event)
   players.scrub_all()
 end
 
+local function on_pre_mined_entity(event)
+  entities.clear_modules(event.entity)
+end
+
 local function on_player_inventory_event(event)
   players.scrub_player(game.get_player(event.player_index))
 end
@@ -52,6 +56,8 @@ local function register_inventory_events()
 end
 
 local function register_mining_events()
+  register_event("on_pre_player_mined_item", on_pre_mined_entity)
+  register_event("on_robot_pre_mined", on_pre_mined_entity)
   register_event("on_robot_mined_entity", on_mined_entity)
   register_event("on_player_mined_entity", on_mined_entity)
   register_event("script_raised_destroy", on_mined_entity)
@@ -75,4 +81,3 @@ function events.register()
 end
 
 return events
-

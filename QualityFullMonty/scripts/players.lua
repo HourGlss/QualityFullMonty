@@ -10,8 +10,14 @@ local function scrub_stack(stack)
 end
 
 local function scrub_inventory(inventory)
-  if inventory and inventory.valid then
-    inventory.remove({ name = constants.locked_module_name, count = 4294967295 })
+  if not inventory or not inventory.valid then
+    return
+  end
+
+  for _, stack in pairs(inventory.get_contents()) do
+    if stack.name == constants.locked_module_name then
+      inventory.remove(stack)
+    end
   end
 end
 
@@ -43,4 +49,3 @@ function players.remove_dropped_locked_item(entity)
 end
 
 return players
-
